@@ -1,0 +1,16 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "dependencies": {
+    "@opentelemetry/api": "*",
+    "@opentelemetry/auto-instrumentations-node": "*",
+    "@opentelemetry/exporter-metrics-otlp-http": "*",
+    "@opentelemetry/exporter-trace-otlp-http": "*",
+    "@opentelemetry/sdk-metrics": "*",
+    "@opentelemetry/sdk-node": "*",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2"
+  }
+}

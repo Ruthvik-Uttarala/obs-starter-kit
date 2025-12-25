@@ -1,0 +1,18 @@
+groups:
+  - name: slo-alerts
+    rules:
+      # Simple SLO-style alert:
+      # Alert if 5xx rate > 2% over 2 minutes for api-gateway
+      - alert: HighErrorRateApiGateway
+        expr: |
+          (
+            sum(rate(http_server_requests_seconds_count{service_name="api-gateway",http_status_code=~"5.."}[2m]))
+            /
+            sum(rate(http_server_requests_seconds_count{service_name="api-gateway"}[2m]))
+          ) > 0.02
+        for: 30s
+        labels:
+          severity: page
+        annotations:
+          summary: "api-gateway error rate > 2%"
+          description: "Error rate is above 2% for 30s. Check traces in Jaeger and dashboard in Grafana."
